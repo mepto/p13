@@ -1,0 +1,9 @@
+[flake8]
+max-line-length = 99
+select = B,C,E,F,W,T4,B9
+# Ignore 1 blank line before docstring, return before operator
+ignore = D203,F401,F403,E501,W503
+exclude =
+    .git,__pycache__,build,dist,node_modules,requirements.txt,components,
+    **/migrations/*,venv,settings.py
+max-complexity = 10

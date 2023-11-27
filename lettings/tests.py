@@ -1,4 +1,4 @@
-from django.test import TestCase
+# from django.test import TestCase
 
 # Create your tests here.
 # tester template utilisé, tester contenu du contexte, html retourné si vérifs dedans

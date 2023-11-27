@@ -12,9 +12,9 @@ def lettings_index(request):
 
 def letting(request, letting_id):
     """Display specific letting."""
-    letting = Letting.objects.get(id=letting_id)
+    current_letting = Letting.objects.get(id=letting_id)
     context = {
-        'title': letting.title,
-        'address': letting.address,
+        'title': current_letting.title,
+        'address': current_letting.address,
     }
     return render(request, 'lettings/letting.html', context)

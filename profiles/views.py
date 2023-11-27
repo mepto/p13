@@ -12,6 +12,6 @@ def profiles_index(request):
 
 def profile(request, username):
     """Display specific profile."""
-    profile = Profile.objects.get(user__username=username)
-    context = {'profile': profile}
+    user_profile = Profile.objects.get(user__username=username)
+    context = {'profile': user_profile}
     return render(request, 'profiles/profile.html', context)

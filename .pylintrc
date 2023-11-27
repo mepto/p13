@@ -1,0 +1,13 @@
+[MAIN]
+load-plugins=pylint_django
+django-settings-module=oc_lettings_site.settings
+ignore=**/migrations/*
+
+[DESIGN]
+max-parents=10
+
+[MESSAGES CONTROL]
+disable=E501,C0114,E0307,R0903,C0103,W0221,R0801
+
+[FORMAT]
+max-line-length=99

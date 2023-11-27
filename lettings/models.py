@@ -1,5 +1,5 @@
-from django.db import models
 from django.core.validators import MaxValueValidator, MinLengthValidator
+from django.db import models
 
 
 class Address(models.Model):
@@ -12,6 +12,7 @@ class Address(models.Model):
     country_iso_code = models.CharField(max_length=3, validators=[MinLengthValidator(3)])
 
     def __str__(self):
+        """Set default return string for Address object."""
         return f'{self.number} {self.street}'
 
     class Meta:
@@ -25,4 +26,5 @@ class Letting(models.Model):
     address = models.OneToOneField(Address, on_delete=models.CASCADE)
 
     def __str__(self):
+        """Set default return string for Letting object."""
         return self.title
