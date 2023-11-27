@@ -7,7 +7,7 @@ def profiles_index(request):
     """Display profiles list."""
     profiles_list = Profile.objects.all()
     context = {'profiles_list': profiles_list}
-    return render(request, 'profiles/profiles_index.html', context)
+    return render(request, 'profiles/index.html', context)
 
 
 def profile(request, username):
