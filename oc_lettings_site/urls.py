@@ -11,3 +11,7 @@ urlpatterns = [
     path('profiles/', include('profiles.urls', namespace='profiles')),
     path('admin/', admin.site.urls),
 ]
+
+
+handler404 = 'common.views.error_404'
+handler500 = 'common.views.error_500'

@@ -1,0 +1,21 @@
+{% extends "common/base.html" %}
+{% block title %}404 - Page not found{% endblock title %}
+
+{% block content %}
+  <div class="container p-5 text-center">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h1 class="page-header-ui-title mb-3 display-6">
+          404 - Page Not Found</h1>
+        <p>Unfortunately, <span class="text-decoration-line-through">these
+          are not the droids</span> this is not the page you're looking for</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container p-5 text-center">
+    <a class="btn fw-500 col-md-3 btn-primary px-10" href="
+             {% url 'common:index' %}">Home</a>
+  </div>
+
+{% endblock %}
