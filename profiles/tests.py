@@ -77,5 +77,3 @@ def test_new_profile(user):
     profile = Profile.objects.create(user=user, favorite_city=favorite_city)
     assert profile.user.username == 'smorgan'
     assert profile.favorite_city == favorite_city
-
-# creatoin compte sentry.io
