@@ -2,6 +2,7 @@ import os
 
 from pathlib import Path
 import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -112,7 +113,7 @@ STATICFILES_DIRS = [BASE_DIR / "static", ]
 # set up sentry
 sentry_sdk.init(
     dsn="https://1b4e4668ad8e6609c5a4320613719dbf@o4506338696298496.ingest.sentry.io/4506338771599360",
-    enable_tracing=True,
+    enable_tracing=True,  # monitor performance
     send_default_pii=True,
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for performance monitoring.
@@ -121,6 +122,11 @@ sentry_sdk.init(
     # of sampled transactions.
     # We recommend adjusting this value in production.
     profiles_sample_rate=1.0,
+    integrations=[
+        DjangoIntegration(
+            transaction_style='url',
+        )
+    ]
 )
 
 # LOGGING = {
