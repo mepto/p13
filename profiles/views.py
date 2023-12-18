@@ -1,6 +1,12 @@
+import logging
+
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404, render
 
 from profiles.models import Profile
+
+
+logger = logging.getLogger('main')
 
 
 def profiles_index(request):
@@ -12,6 +18,10 @@ def profiles_index(request):
 
 def profile(request, username):
     """Display specific profile."""
-    user_profile = get_object_or_404(Profile, user__username=username)
-    context = {'profile': user_profile}
+    try:
+        user_profile = Profile.objects.get(user__username=username)
+        context = {'profile': user_profile}
+    except ObjectDoesNotExist:
+        logger.error(f'Profile for {username} does not exist.')
+        return profiles_index(request)
     return render(request, 'profiles/profile.html', context)

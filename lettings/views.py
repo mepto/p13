@@ -1,6 +1,12 @@
+import logging
+
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404, render
 
 from lettings.models import Letting
+
+
+logger = logging.getLogger('main')
 
 
 def lettings_index(request):
@@ -12,7 +18,11 @@ def lettings_index(request):
 
 def letting(request, letting_id):
     """Display specific letting."""
-    current_letting = get_object_or_404(Letting, id=letting_id)
+    try:
+        current_letting = Letting.objects.get(id=letting_id)
+    except ObjectDoesNotExist:
+        logger.error(f'Letting for {letting_id} does not exist.')
+        return lettings_index(request)
     context = {
         'title': current_letting.title,
         'address': current_letting.address,
