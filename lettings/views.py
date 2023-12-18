@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from lettings.models import Letting
 
@@ -12,7 +12,7 @@ def lettings_index(request):
 
 def letting(request, letting_id):
     """Display specific letting."""
-    current_letting = Letting.objects.get(id=letting_id)
+    current_letting = get_object_or_404(Letting, id=letting_id)
     context = {
         'title': current_letting.title,
         'address': current_letting.address,
