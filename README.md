@@ -32,6 +32,14 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 - Confirmer que la commande `pip` exécute l'exécutable pip dans l'environnement virtuel, `which pip`
 - Pour désactiver l'environnement, `deactivate`
 
+#### Variables d'environnement
+
+Un fichier .env avec les variables pertinentes devra être disponible dans 
+l'application avec la SECRET_KEY, SENTRY_DSN, DEBUG, DATABASE_URL, ENGINE. 
+La base de données locale est faite en sqlite3, s'il fallait passer la base 
+de données sur du postgresl, d'autres informations seront également 
+nécessaires pour l'accès à la base de données.
+
 #### Exécuter le site
 
 - `cd /path/to/p13`

@@ -1,20 +1,26 @@
+import environ
 import os
 
 from pathlib import Path
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
+
+# SECURITY WARNING: don't run with debug turned on in production!
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+# Take environment variables from .env file
+env.read_env(os.path.join(BASE_DIR, 'oc_lettings_site', '.env'))
+# environ.Env.read_env(os.path.join(BASE_DIR, 'oc_lettings_site', '.env'))
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+SECRET_KEY = env('SECRET_KEY')
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['*', ]
 
@@ -66,11 +72,12 @@ WSGI_APPLICATION = 'oc_lettings_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASE_URL = env('DATABASE_URL')
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'oc-lettings-site.sqlite3'),
-    }
+    # read os.environ['DATABASE_URL'] and raises
+    # ImproperlyConfigured exception if not found
+    # The db() method is an alias for db_url().
+    'default': env.db(var=env('DATABASE_URL'), default=env('DATABASE_URL'), engine=env('ENGINE')),
 }
 
 # Password validation
@@ -108,11 +115,11 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static", ]
+STATICFILES_DIRS = [BASE_DIR / 'static', ]
 
 # set up sentry
 sentry_sdk.init(
-    dsn="https://1b4e4668ad8e6609c5a4320613719dbf@o4506338696298496.ingest.sentry.io/4506338771599360",
+    dsn=env('SENTRY_DSN'),
     enable_tracing=True,  # monitor performance
     send_default_pii=True,
     # Set traces_sample_rate to 1.0 to capture 100%
