@@ -26,7 +26,7 @@ jobs:
       - checkout
       - run:
           name: "venv"
-          command: python -m venv venv &&
+          command: python -m venv &&
                    source venv/bin/activate &&
                    pip install -r requirements.txt
       - run:
