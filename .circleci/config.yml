@@ -20,10 +20,13 @@ jobs:
           name: "Say hello"
           command: "echo Hello, World!"
   build:
-    docker:
-      - image: cimg/python:3.10.13
+#    docker:
+#      - image: cimg/python:3.10.13
+    executor: python/default
     steps:
       - checkout
+      - python/install-packages:
+          pkg-manager: pip
       - run:
           name: "venv"
           command: python -m venv &&
