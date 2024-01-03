@@ -22,7 +22,9 @@ jobs:
   build:
 #    docker:
 #      - image: cimg/python:3.10.13
-    executor: python/default
+    executor:
+      name: python/default
+      tag: "3.10"
     steps:
       - checkout
       - python/install-packages:
