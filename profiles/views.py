@@ -1,10 +1,9 @@
 import logging
 
 from django.core.exceptions import ObjectDoesNotExist
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 
 from profiles.models import Profile
-
 
 logger = logging.getLogger('main')
 
@@ -22,6 +21,6 @@ def profile(request, username):
         user_profile = Profile.objects.get(user__username=username)
         context = {'profile': user_profile}
     except ObjectDoesNotExist:
-        logger.error(f'Profile for {username} does not exist.')
+        logger.error('Profile for %s does not exist.', username)
         return profiles_index(request)
     return render(request, 'profiles/profile.html', context)

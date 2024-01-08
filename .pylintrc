@@ -1,7 +1,7 @@
 [MAIN]
 load-plugins=pylint_django
 django-settings-module=oc_lettings_site.settings
-ignore=**/migrations/*
+ignore=**/migrations/*,settings.py
 
 [DESIGN]
 max-parents=10

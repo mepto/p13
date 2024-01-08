@@ -1,10 +1,9 @@
 import logging
 
 from django.core.exceptions import ObjectDoesNotExist
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 
 from lettings.models import Letting
-
 
 logger = logging.getLogger('main')
 
@@ -21,7 +20,7 @@ def letting(request, letting_id):
     try:
         current_letting = Letting.objects.get(id=letting_id)
     except ObjectDoesNotExist:
-        logger.error(f'Letting for {letting_id} does not exist.')
+        logger.error('Letting for %s does not exist.', letting_id)
         return lettings_index(request)
     context = {
         'title': current_letting.title,

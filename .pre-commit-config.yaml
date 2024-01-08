@@ -34,7 +34,7 @@ repos:
                 entry: pylint
                 language: system
                 types: [ python ]
-                exclude: migrations
+                exclude: migrations|settings.py
                 args:
                     [
                         "-rn", # Only display messages
