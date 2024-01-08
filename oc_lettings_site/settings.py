@@ -140,8 +140,8 @@ sentry_sdk.init(
 LOG_DIR = os.path.join(BASE_DIR, 'log')
 LOG_FILE_MAIN = 'main.log'
 LOG_FILE_DJANGO = 'django.log'
-LOG_PATH_DJANGO = os.path.join(BASE_DIR, LOG_FILE_DJANGO)
-LOG_PATH_MAIN = os.path.join(BASE_DIR, LOG_FILE_MAIN)
+LOG_PATH_DJANGO = os.path.join(LOG_DIR, LOG_FILE_DJANGO)
+LOG_PATH_MAIN = os.path.join(LOG_DIR, LOG_FILE_MAIN)
 
 if not os.path.exists(LOG_DIR):
     try:
