@@ -7,6 +7,17 @@ orbs:
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
+  pylint:
+    executor:
+      name: python/default
+      tag: "3.10"
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: "pylint"
+          command: pylint
   build:
 #    docker:
 #      - image: cimg/python:3.10.13
@@ -36,4 +47,4 @@ workflows:
 #          args: '--dev'
 #          pkg-manager: pip
 #          test-tool: pytest
-      - build
+      - pylint
