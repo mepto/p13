@@ -7,18 +7,6 @@ orbs:
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/configuration-reference/#executor-job
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/configuration-reference/#steps
-    steps:
-      - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
   build:
 #    docker:
 #      - image: cimg/python:3.10.13
@@ -29,11 +17,6 @@ jobs:
       - checkout
       - python/install-packages:
           pkg-manager: pip
-      - run:
-          name: "venv"
-          command: python -m venv &&
-                   source venv/bin/activate &&
-                   pip install -r requirements.txt
       - run:
           name: "pre-commit"
           command: pre-commit run --all
@@ -49,5 +32,8 @@ jobs:
 workflows:
   say-hello-workflow:
     jobs:
-      - say-hello
+#      - python/test:
+#          args: '--dev'
+#          pkg-manager: pip
+#          test-tool: pytest
       - build
