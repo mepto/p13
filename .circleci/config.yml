@@ -8,8 +8,6 @@ orbs:
 # See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
   lint-and-tests:
-#    docker:
-#      - image: cimg/python:3.10.13
     executor:
       name: python/default
       tag: "3.10"
@@ -37,8 +35,4 @@ jobs:
 workflows:
   say-hello-workflow:
     jobs:
-#      - python/test:
-#          args: '--dev'
-#          pkg-manager: pip
-#          test-tool: pytest
       - lint-and-tests
