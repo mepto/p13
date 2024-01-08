@@ -136,6 +136,21 @@ sentry_sdk.init(
     ]
 )
 
+# LOGGING
+LOG_DIR = os.path.join(BASE_DIR, 'log')
+LOG_FILE_MAIN = 'main.log'
+LOG_FILE_DJANGO = 'django.log'
+LOG_PATH_DJANGO = os.path.join(BASE_DIR, LOG_FILE_DJANGO)
+LOG_PATH_MAIN = os.path.join(BASE_DIR, LOG_FILE_MAIN)
+
+if not os.path.exists(LOG_DIR):
+    os.mkdir(LOG_DIR)
+
+if not os.path.exists(LOG_PATH_DJANGO):
+    f = open(LOG_PATH_DJANGO, 'a').close()
+if not os.path.exists(LOG_PATH_MAIN):
+    f = open(LOG_PATH_MAIN, 'a').close()
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
