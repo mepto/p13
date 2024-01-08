@@ -144,7 +144,10 @@ LOG_PATH_DJANGO = os.path.join(BASE_DIR, LOG_FILE_DJANGO)
 LOG_PATH_MAIN = os.path.join(BASE_DIR, LOG_FILE_MAIN)
 
 if not os.path.exists(LOG_DIR):
-    os.mkdir(LOG_DIR)
+    try:
+        os.mkdir(LOG_DIR)
+    except FileExistsError:
+        pass
 
 if not os.path.exists(LOG_PATH_DJANGO):
     f = open(LOG_PATH_DJANGO, 'a').close()
